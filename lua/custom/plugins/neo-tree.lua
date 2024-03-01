@@ -9,14 +9,31 @@ return {
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
-  event = 'VeryLazy', -- Able to use `:Neotree` command without a keymapping
-  keys = {
-    -- Keymap to toggle Neotree
-    { '<leader>nt', '<cmd>Neotree toggle<cr>', 'Toggle Neotree' },
-    -- Keymap to focus Neotree
-    { '<leader>nf', '<cmd>Neotree focus<cr>', 'Focus Neotree' },
-  },
   config = function()
-    require('neo-tree').setup {}
+    require('neo-tree').setup {
+      default_component_configs = {
+        git_status = {
+          symbols = {
+            added = '', -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = '', -- or "", but this is redundant info if you use git_status_colors on the name
+          },
+        },
+      },
+
+      window = {
+        width = 36, -- default: 40
+      },
+
+      filesystem = {
+        filtered_items = {
+          -- visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = true,
+          always_show = {
+            '.gitignore',
+          },
+        },
+      },
+    }
   end,
 }
