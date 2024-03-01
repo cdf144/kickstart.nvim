@@ -5,6 +5,8 @@ nvim
 
 # Ignore hidden files/folders
 .*
-# Except for .gitignore
+# Exceptions
 !/.gitignore
+!/.github
+!/.stylua.toml
 
