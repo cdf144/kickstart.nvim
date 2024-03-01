@@ -21,7 +21,7 @@ return {
       },
 
       window = {
-        width = 36, -- default: 40
+        width = 30, -- default: 40
       },
 
       filesystem = {

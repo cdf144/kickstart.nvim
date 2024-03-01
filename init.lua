@@ -155,7 +155,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Set line length marker
--- vim.opt.colorcolumn = '88'
+vim.opt.colorcolumn = '88'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -273,6 +273,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-fugitive',
+  'dstein64/nvim-scrollview',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
