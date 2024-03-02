@@ -157,6 +157,28 @@ vim.opt.scrolloff = 10
 -- Set line length marker
 vim.opt.colorcolumn = '88'
 
+-- [[ Defining Custom Filetypes ]]
+-- Enables highlighting for files not being parsed by tree-sitter
+vim.filetype.add {
+  filename = {
+    ['.todo'] = 'txt',
+  },
+  pattern = {
+    ['req.*.txt'] = 'config',
+    ['gitconf.*'] = 'gitconfig',
+  },
+}
+
+-- [[ Diagnostics Configuration ]]
+vim.diagnostic.config {
+  underline = {
+    severity = { max = vim.diagnostic.severity.ERROR },
+  },
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.WARN },
+  },
+}
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -1005,9 +1027,10 @@ cmp.setup {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format lua code
         'isort', -- Sort python imports
-        'black', -- Format python code
+        'black', -- Format python code and provide diagnostics via null-ls
+        'pylint', -- Python linting diagnostics via null-ls
         'ruff', -- Used as a faster python formatter designed to be a drop-in replacement for Black
-        'markdownlint', -- Linting for markdown via null-ls (none-ls)
+        'debugpy', -- Debugger for python implementing the DAP protocol
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1282,7 +1305,7 @@ cmp.setup {
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

@@ -23,10 +23,12 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local dap_python = require 'dap-python'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -42,6 +44,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'debugpy',
       },
     }
 
@@ -83,6 +86,11 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+    -- Setup dap-python with argument being path to virtual environment of debugpy instance
+    dap_python.setup '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+    -- dap-python debugging keymaps
+    vim.keymap.set('n', '<leader>dpr', dap_python.test_method, { desc = 'Debug: Python Method' })
 
     -- Install golang specific config
     require('dap-go').setup {
