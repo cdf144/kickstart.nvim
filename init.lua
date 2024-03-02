@@ -389,13 +389,12 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'nvimtools/none-ls.nvim',
-  --   ft = { 'python' },
-  --   opts = function()
-  --     return require 'custom.configs.null-ls'
-  --   end,
-  -- },
+  {
+    'nvimtools/none-ls.nvim',
+    opts = function()
+      return require 'custom.configs.null-ls'
+    end,
+  },
 
   -- NOTE: Plugins can specify dependencies.
   --
@@ -964,6 +963,8 @@ cmp.setup {
         -- gopls = {},
         pyright = {},
         ruff_lsp = {},
+        denols = {},
+        marksman = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -1005,7 +1006,8 @@ cmp.setup {
         'stylua', -- Used to format lua code
         'isort', -- Sort python imports
         'black', -- Format python code
-        'ruff', -- Faster python formatter designed to be a drop-in replacement for Black
+        'ruff', -- Used as a faster python formatter designed to be a drop-in replacement for Black
+        'markdownlint', -- Linting for markdown via null-ls (none-ls)
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1051,6 +1053,7 @@ cmp.setup {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        json = { 'deno_fmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { 'isort', 'black' },
         --
