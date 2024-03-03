@@ -1115,17 +1115,10 @@ cmp.setup {
           end
           return 'make install_jsregexp'
         end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
-        },
+        config = function()
+          -- Add Django framework snippets from friendly-snippets
+          require('luasnip').filetype_extend('python', { 'django' })
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
 
@@ -1134,6 +1127,18 @@ cmp.setup {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+
+      -- If you want to add a bunch of pre-configured snippets,
+      --    you can use this plugin to help you. It even has snippets
+      --    for various frameworks/libraries/etc. but you will have to
+      --    set up the ones that are useful for you.
+      {
+        'rafamadriz/friendly-snippets',
+        config = function()
+          -- Make friendly-snippets work with LuaSnip
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+      },
     },
     config = function()
       -- See `:help cmp`
@@ -1253,8 +1258,7 @@ cmp.setup {
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup()
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
