@@ -216,6 +216,10 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- trouble.nvim keymaps
+vim.keymap.set('n', '<leader>tf', function()
+  require('trouble').open()
+end, { desc = '[T]rouble [F]ocus' })
+
 vim.keymap.set('n', '<leader>tt', function()
   require('trouble').toggle()
 end, { desc = '[T]rouble [T]oggle' })
@@ -396,7 +400,7 @@ require('lazy').setup({
       -- Document existing key chains
       require('which-key').register {
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ocument / [D]ebug', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
@@ -987,6 +991,8 @@ cmp.setup {
         ruff_lsp = {},
         denols = {},
         marksman = {},
+        html = {},
+        cssls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -994,7 +1000,7 @@ cmp.setup {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
@@ -1028,9 +1034,7 @@ cmp.setup {
         'stylua', -- Used to format lua code
         'isort', -- Sort python imports
         'black', -- Format python code and provide diagnostics via null-ls
-        'pylint', -- Python linting diagnostics via null-ls
-        'ruff', -- Used as a faster python formatter designed to be a drop-in replacement for Black
-        'debugpy', -- Debugger for python implementing the DAP protocol
+        'djlint', -- Django HTML templates linter and formatter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1077,6 +1081,7 @@ cmp.setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         json = { 'deno_fmt' },
+        htmldjango = { 'djlint' },
         -- Conform can also run multiple formatters sequentially
         -- python = { 'isort', 'black' },
         --
