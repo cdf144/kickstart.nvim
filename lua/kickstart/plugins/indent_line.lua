@@ -5,6 +5,7 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {
+      scope = { enabled = false }, -- Will be handled by mini.indentscope instead
       exclude = {
         filetypes = {
           'help',
