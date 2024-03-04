@@ -261,6 +261,11 @@ vim.keymap.set('n', '<leader>nc', function()
   require('neo-tree.command').execute { action = 'close' }
 end, { desc = '[N]eotree [C]lose' })
 
+-- dadbod (Database) keymap
+vim.keymap.set('n', '<leader>bf', '<cmd>DBUI<CR>', { desc = 'Data[B]ase [F]ocus UI' })
+vim.keymap.set('n', '<leader>bt', '<cmd>DBUIToggle<CR>', { desc = 'Data[B]ase [T]oggle UI' })
+vim.keymap.set('n', '<leader>ba', '<cmd>DBUIAddConnection<CR>', { desc = 'Data[B]ase [A]dd Connection' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -399,14 +404,15 @@ require('lazy').setup {
 
       -- Document existing key chains
       require('which-key').register {
+        ['<leader>b'] = { name = 'Data[B]ase', _ = 'which_key_ignore' },
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument / [D]ebug', _ = 'which_key_ignore' },
+        ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]rouble', _ = 'which_key_ignore' },
         ['<leader>v'] = { name = '[V]env Selector', _ = 'which_key_ignore' },
+        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -1214,6 +1220,32 @@ cmp.setup {
           { name = 'path' },
         },
       }
+
+      -- Database query completions powered by vim-dadbod
+      --
+      -- autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'sql',
+        },
+        command = [[setlocal omnifunc=vim_dadbod_completion#omni]],
+      })
+      -- autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = {
+          'sql',
+          'mysql',
+          'plsql',
+        },
+        callback = function()
+          cmp.setup.buffer {
+            sources = {
+              { name = 'vim-dadbod-completion' },
+              { name = 'luasnip' },
+            },
+          }
+        end,
+      })
     end,
   },
 
