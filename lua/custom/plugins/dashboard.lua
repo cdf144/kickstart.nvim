@@ -15,6 +15,10 @@ return {
     logo = string.rep('\n', 4) .. logo .. '\n\n'
 
     local opts = {
+      hide = {
+        -- This is taken care of by lualine
+        statusline = false,
+      },
       config = {
         header = vim.split(logo, '\n'),
       },
