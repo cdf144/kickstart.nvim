@@ -411,7 +411,7 @@ require('lazy').setup {
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]rouble', _ = 'which_key_ignore' },
-        ['<leader>v'] = { name = '[V]env Selector', _ = 'which_key_ignore' },
+        ['<leader>v'] = { name = '[V]env', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
       }
       -- visual mode
@@ -1039,10 +1039,13 @@ cmp.setup {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
-        'isort', -- Sort python imports
-        'black', -- Format python code and provide diagnostics via null-ls
-        'djlint', -- Django HTML templates linter and formatter
+        -- Used to format code via conform.nvim
+        'stylua', -- lua
+        'isort', -- python (sort imports)
+        'black', -- python (format)
+        'ruff', -- python (faster format, compatible with black style)
+        'djlint', -- htmldjango (format and linting diagnostics via null-ls)
+        'sql-formatter', -- sql
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1089,7 +1092,11 @@ cmp.setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         json = { 'deno_fmt' },
+        javascript = { 'deno_fmt' },
+        typescript = { 'deno_fmt' },
         htmldjango = { 'djlint' },
+        sql = { 'sql_formatter' },
+        mysql = { 'sql_formatter' },
         -- Conform can also run multiple formatters sequentially
         -- python = { 'isort', 'black' },
         --
@@ -1301,6 +1308,19 @@ cmp.setup {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      -- Convenient and smart commenting. Comment structure is inferred
+      -- from nvim-ts-context-commentstring (treesitter)
+      --
+      -- gc  - Toggle comment (like `gcip` - comment inner paragraph)
+      -- gcc - Toggle comment on current line
+      require('mini.comment').setup {
+        options = {
+          custom_commentstring = function()
+            return require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+          end,
+        },
+      }
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
