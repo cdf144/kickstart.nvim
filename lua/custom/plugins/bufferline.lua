@@ -7,6 +7,11 @@ return {
   config = function()
     require('bufferline').setup {
       options = {
+        hover = {
+          enabled = true,
+          delay = 100,
+          reveal = { 'close' },
+        },
         offsets = {
           {
             filetype = 'neo-tree',
