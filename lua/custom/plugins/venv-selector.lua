@@ -3,7 +3,8 @@ return {
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
   opts = {
     name = { 'venv', '.venv', 'env', '.env' },
-    path = '~/PycharmProjects/',
+    -- Directory where python projects are stored
+    path = '~/Documents/devel/python/',
     parents = 0,
   },
   event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping

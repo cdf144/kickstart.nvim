@@ -106,7 +106,7 @@ vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
--- Enable features like hover events for bufferline.nvim
+-- Enable features like hover events (bufferline, scrollview,...)
 vim.opt.mousemoveevent = true
 
 -- Don't show the mode, since it's already in the status line
@@ -1001,8 +1001,8 @@ cmp.setup {
         ruff_lsp = {},
         denols = {},
         marksman = {},
-        html = {},
-        cssls = {},
+        html = {}, -- Includes formatter
+        cssls = {}, -- Includes formatter
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -1010,7 +1010,15 @@ cmp.setup {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        tsserver = {
+          -- Disable server's formatter, use deno_fmt via conform.nvim instead
+          on_attach = function(client, bufnr)
+            -- nvim 0.8 and later
+            client.server_capabilities.documentFormattingProvider = false
+            -- nvim 0.7 and earlier
+            -- client.resolved_capabilities.document_formatting = false
+          end,
+        },
         --
 
         lua_ls = {
