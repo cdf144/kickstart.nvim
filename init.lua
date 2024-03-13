@@ -318,7 +318,7 @@ require('lazy').setup {
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- { 'numToStr/Comment.nvim', opts = {} },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -1104,6 +1104,7 @@ cmp.setup {
         json = { 'deno_fmt' },
         javascript = { 'deno_fmt' },
         typescript = { 'deno_fmt' },
+        markdown = { 'deno_fmt' },
         htmldjango = { 'djlint' },
         sql = { 'sql_formatter' },
         mysql = { 'sql_formatter' },
@@ -1318,19 +1319,6 @@ cmp.setup {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
-
-      -- Convenient and smart commenting. Comment structure is inferred
-      -- from nvim-ts-context-commentstring (treesitter)
-      --
-      -- gc  - Toggle comment (like `gcip` - comment inner paragraph)
-      -- gcc - Toggle comment on current line
-      require('mini.comment').setup {
-        options = {
-          custom_commentstring = function()
-            return require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
-          end,
-        },
-      }
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
