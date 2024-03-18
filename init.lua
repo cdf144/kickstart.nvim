@@ -1012,6 +1012,7 @@ cmp.setup {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
           -- Disable server's formatter, use deno_fmt via conform.nvim instead
+          ---@diagnostic disable-next-line: unused-local
           on_attach = function(client, bufnr)
             -- nvim 0.8 and later
             client.server_capabilities.documentFormattingProvider = false
