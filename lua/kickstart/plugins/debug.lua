@@ -25,11 +25,13 @@ return {
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python',
   },
+  event = 'VeryLazy',
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
     local dap_python = require 'dap-python'
 
+    ---@diagnostic disable-next-line: missing-fields
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -59,12 +61,14 @@ return {
     end, { desc = '[D]ebug: Set [B]reakpoint' })
 
     -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
+    -- For more information, see `:help nvim-dap-ui`
+    ---@diagnostic disable-next-line: missing-fields
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      ---@diagnostic disable-next-line: missing-fields
       controls = {
         icons = {
           pause = '⏸',

@@ -5,6 +5,7 @@ return {
   dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
   config = function()
     -- See: https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations
+    ---@diagnostic disable-next-line: missing-fields
     require('ts_context_commentstring').setup {
       enable_autocmd = false,
     }
