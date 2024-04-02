@@ -1037,6 +1037,10 @@ cmp.setup {
             },
           },
         },
+
+        bashls = {
+          filetypes = { 'sh', 'zsh' },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -1052,12 +1056,14 @@ cmp.setup {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         -- Used to format code via conform.nvim
-        'stylua', -- lua
-        'isort', -- python (sort imports)
-        'black', -- python (format)
-        'ruff', -- python (faster format, compatible with black style)
-        'djlint', -- htmldjango (format and linting diagnostics via null-ls)
-        'sql-formatter', -- sql
+        'stylua', -- Lua
+        'isort', -- Python (sort imports)
+        'black', -- Python (format)
+        'ruff', -- Python (faster format, compatible with Black style)
+        'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
+        'sql-formatter', -- SQL
+        'shfmt', -- Shell (formatting)
+        'shellcheck', -- Shell (diagnotics via bashls)
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1110,6 +1116,8 @@ cmp.setup {
         htmldjango = { 'djlint' },
         sql = { 'sql_formatter' },
         mysql = { 'sql_formatter' },
+        sh = { 'shfmt' },
+        zsh = { 'shfmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { 'isort', 'black' },
         --
