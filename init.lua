@@ -217,52 +217,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- trouble.nvim keymaps
-vim.keymap.set('n', '<leader>tf', function()
-  require('trouble').open()
-end, { desc = '[T]rouble [F]ocus' })
-
-vim.keymap.set('n', '<leader>tt', function()
-  require('trouble').toggle()
-end, { desc = '[T]rouble [T]oggle' })
-
-vim.keymap.set('n', '<leader>tw', function()
-  require('trouble').toggle 'workspace_diagnostics'
-end, { desc = '[T]rouble [W]orkspace' })
-
-vim.keymap.set('n', '<leader>td', function()
-  require('trouble').toggle 'document_diagnostics'
-end, { desc = '[T]rouble [D]ocument' })
-
-vim.keymap.set('n', '<leader>tq', function()
-  require('trouble').toggle 'quickfix'
-end, { desc = '[T]rouble [Q]uickfix' })
-
-vim.keymap.set('n', '<leader>tl', function()
-  require('trouble').toggle 'loclist'
-end, { desc = '[T]rouble [L]oclist' })
-
-vim.keymap.set('n', '<leader>tr', function()
-  require('trouble').toggle 'lsp_references'
-end, { desc = '[T]rouble LSP [R]eferences' })
-
--- neo-tree.nvim keymaps
-vim.keymap.set('n', '<leader>nt', function()
-  require('neo-tree.command').execute { toggle = true }
-end, { desc = '[N]eotree [T]oggle' })
-
-vim.keymap.set('n', '<leader>nf', function()
-  require('neo-tree.command').execute { action = 'focus' }
-end, { desc = '[N]eotree [F]ocus' })
-
-vim.keymap.set('n', '<leader>ns', function()
-  require('neo-tree.command').execute { action = 'show' }
-end, { desc = '[N]eotree [S]how' })
-
-vim.keymap.set('n', '<leader>nc', function()
-  require('neo-tree.command').execute { action = 'close' }
-end, { desc = '[N]eotree [C]lose' })
-
 -- dadbod (Database) keymap
 vim.keymap.set('n', '<leader>bf', '<cmd>DBUI<CR>', { desc = 'Data[B]ase [F]ocus UI' })
 vim.keymap.set('n', '<leader>bt', '<cmd>DBUIToggle<CR>', { desc = 'Data[B]ase [T]oggle UI' })
