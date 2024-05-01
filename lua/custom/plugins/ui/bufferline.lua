@@ -9,7 +9,7 @@ return {
       options = {
         hover = {
           enabled = true,
-          delay = 50,
+          delay = 20,
           reveal = { 'close' },
         },
         offsets = {
