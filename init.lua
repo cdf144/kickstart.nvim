@@ -367,9 +367,10 @@ require('lazy').setup {
         ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]rouble', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]rouble / [T]oggle', _ = 'which_key_ignore' },
         ['<leader>v'] = { name = '[V]env', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -1016,7 +1017,7 @@ cmp.setup {
       vim.list_extend(ensure_installed, {
         -- Used to format code via conform.nvim
         'stylua', -- Lua
-        'isort', -- Python (sort imports)
+        'usort', -- Python (sort imports)
         'black', -- Python (format)
         'ruff', -- Python (faster format, compatible with Black style)
         'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
@@ -1077,17 +1078,12 @@ cmp.setup {
         mysql = { 'sql_formatter' },
         sh = { 'shfmt' },
         zsh = { 'shfmt' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { 'isort', 'black' },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+
         python = function(bufnr)
           if require('conform').get_formatter_info('ruff_format', bufnr).available then
-            return { 'isort', 'ruff_format' }
+            return { 'ruff_fix', 'ruff_format' }
           else
-            return { 'isort', 'black' }
+            return { 'usort', 'black' }
           end
         end,
       },
