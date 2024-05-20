@@ -3,6 +3,9 @@ test.sh
 .luarc.json
 nvim
 
+spell/
+lazy-lock.json
+
 # Ignore hidden files/folders
 .*
 # Exceptions
