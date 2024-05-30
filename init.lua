@@ -620,7 +620,10 @@ require('lazy').setup({
             client.server_capabilities.hoverProvider = false
           end,
         },
-        denols = {},
+        denols = {
+          -- Disable denols as this is only used for formatting via conform.nvim
+          filetypes = { 'none' },
+        },
         marksman = {},
         html = {}, -- Includes formatter
         cssls = {}, -- Includes formatter
