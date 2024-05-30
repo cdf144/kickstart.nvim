@@ -662,7 +662,7 @@ require('lazy').setup({
         },
 
         bashls = {
-          filetypes = { 'sh', 'zsh' },
+          filetypes = { 'sh' },
         },
       }
 
