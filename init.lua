@@ -313,6 +313,7 @@ require('lazy').setup({
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument / [D]ebug' },
         { '<leader>n', group = '[N]eotree' },
+        { '<leader>o', group = 'Tr[o]uble' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
