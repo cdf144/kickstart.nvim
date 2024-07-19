@@ -605,10 +605,6 @@ require('lazy').setup({
             client.server_capabilities.hoverProvider = false
           end,
         },
-        denols = {
-          -- Disable denols as this is only used for formatting via conform.nvim
-          filetypes = { 'none' },
-        },
         marksman = {},
         html = {}, -- Includes formatter
         cssls = {}, -- Includes formatter
@@ -620,7 +616,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
-          -- Disable server's formatter, use deno_fmt via conform.nvim instead
+          -- Disable server's formatter, use prettierd via conform.nvim instead
           ---@diagnostic disable-next-line: unused-local
           on_attach = function(client, bufnr)
             -- nvim 0.8 and later
@@ -717,10 +713,10 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        json = { 'deno_fmt' },
-        javascript = { 'deno_fmt' },
-        typescript = { 'deno_fmt' },
-        markdown = { 'deno_fmt' },
+        json = { 'prettierd' },
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
+        markdown = { 'prettierd' },
         htmldjango = { 'djlint' },
         sql = { 'sql_formatter' },
         mysql = { 'sql_formatter' },
