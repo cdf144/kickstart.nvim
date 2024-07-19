@@ -661,6 +661,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         -- Used to format code via conform.nvim
         'stylua', -- Lua
+        'prettierd', -- JavaScript, TypeScript, JSON, Markdown,...
         'usort', -- Python (sort imports)
         'black', -- Python (format)
         'ruff', -- Python (faster format, compatible with Black style)
