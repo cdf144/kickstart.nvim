@@ -26,14 +26,14 @@ return {
     {
       '<leader>ns',
       function()
-        require('neo-tree.command').execute { toggle = 'show' }
+        require('neo-tree.command').execute { action = 'show' }
       end,
       desc = '[N]eotree [S]how',
     },
     {
       '<leader>nc',
       function()
-        require('neo-tree.command').execute { toggle = 'close' }
+        require('neo-tree.command').execute { action = 'close' }
       end,
       desc = '[N]eotree [C]lose',
     },
