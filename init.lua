@@ -599,7 +599,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
-        ruff_lsp = {
+        ruff = {
           on_attach = function(client, _)
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
@@ -664,7 +664,6 @@ require('lazy').setup({
         'prettierd', -- JavaScript, TypeScript, JSON, Markdown,...
         'usort', -- Python (sort imports)
         'black', -- Python (format)
-        'ruff', -- Python (faster format, compatible with Black style)
         'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
         'sql-formatter', -- SQL
         'shfmt', -- Shell (formatting)
