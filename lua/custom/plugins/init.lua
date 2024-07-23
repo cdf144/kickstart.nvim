@@ -3,7 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { import = 'custom.plugins.coding' },
   { import = 'custom.plugins.colorscheme' },
   { import = 'custom.plugins.editor' },
   { import = 'custom.plugins.lang' },
