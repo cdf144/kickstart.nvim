@@ -43,7 +43,7 @@ return {
         desc = '[D]ebug: Set [B]reakpoint',
       },
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      { '<leader>', dapui.toggle, desc = 'Debug: See last session result.' },
+      { '<leader>ds', dapui.toggle, desc = '[D]ebug: See last [s]ession result.' },
       unpack(keys),
     }
   end,
