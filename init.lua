@@ -609,18 +609,15 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        bashls = {},
         -- clangd = {},
         -- gopls = {},
         pyright = {},
         ruff = {
-          on_attach = function(client, _)
-            -- Disable hover in favor of Pyright
+          on_attach = function(client, bufnr)
             client.server_capabilities.hoverProvider = false
           end,
         },
-        marksman = {},
-        html = {}, -- Includes formatter
-        cssls = {}, -- Includes formatter
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -629,16 +626,13 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {
-          -- Disable server's formatter, use prettierd via conform.nvim instead
-          ---@diagnostic disable-next-line: unused-local
           on_attach = function(client, bufnr)
-            -- nvim 0.8 and later
             client.server_capabilities.documentFormattingProvider = false
-            -- nvim 0.7 and earlier
-            -- client.resolved_capabilities.document_formatting = false
           end,
         },
-        --
+        html = {}, -- Includes formatter
+        cssls = {}, -- Includes formatter
+        marksman = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -653,10 +647,6 @@ require('lazy').setup({
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
-        },
-
-        bashls = {
-          filetypes = { 'sh' },
         },
       }
 
