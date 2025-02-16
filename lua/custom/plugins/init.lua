@@ -6,6 +6,7 @@ return {
   { import = 'custom.plugins.colorscheme' },
   { import = 'custom.plugins.editor' },
   { import = 'custom.plugins.lang' },
+  { import = 'custom.plugins.tmux' },
   { import = 'custom.plugins.ui' },
   { import = 'custom.plugins.util' },
 }
