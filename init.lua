@@ -672,7 +672,7 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         bashls = {},
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         pyright = {},
         ruff = {
@@ -732,11 +732,12 @@ require('lazy').setup({
         -- Used to format code via conform.nvim
         'stylua', -- Lua
         'prettierd', -- JavaScript, TypeScript, JSON, Markdown,...
+        'black', -- Python
         'usort', -- Python (sort imports)
-        'black', -- Python (format)
         'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
+        'clang-format', -- C/C++
         'sql-formatter', -- SQL
-        'shfmt', -- Shell (formatting)
+        'shfmt', -- Shell
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
