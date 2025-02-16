@@ -800,6 +800,8 @@ require('lazy').setup({
         typescript = { 'prettierd' },
         markdown = { 'prettierd' },
         htmldjango = { 'djlint' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
         sql = { 'sql_formatter' },
         mysql = { 'sql_formatter' },
         sh = { 'shfmt' },
