@@ -732,6 +732,7 @@ require('lazy').setup({
         -- Used to format code via conform.nvim
         'stylua', -- Lua
         'prettierd', -- JavaScript, TypeScript, JSON, Markdown,...
+        'eslint_d', -- JavaScript, TypeScript
         'black', -- Python
         'usort', -- Python (sort imports)
         'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
@@ -796,8 +797,8 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         json = { 'prettierd' },
-        javascript = { 'prettierd' },
-        typescript = { 'prettierd' },
+        javascript = { 'prettierd', 'eslint_d' },
+        typescript = { 'prettierd', 'eslint_d' },
         markdown = { 'prettierd' },
         htmldjango = { 'djlint' },
         c = { 'clang-format' },
