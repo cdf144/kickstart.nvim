@@ -721,11 +721,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        ts_ls = {
-          on_attach = function(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
-          end,
-        },
+        vtsls = {},
         html = {}, -- Includes formatter
         cssls = {}, -- Includes formatter
         marksman = {},
@@ -831,6 +827,7 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         json = { 'prettierd' },
+        jsonc = { 'prettierd' },
         javascript = { 'prettierd', 'eslint_d' },
         typescript = { 'prettierd', 'eslint_d' },
         markdown = { 'prettierd' },
