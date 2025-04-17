@@ -710,7 +710,7 @@ require('lazy').setup({
       local servers = {
         bashls = {},
         clangd = {},
-        -- gopls = {},
+        gopls = {},
         pyright = {},
         ruff = {
           on_attach = function(client, bufnr)
@@ -769,6 +769,8 @@ require('lazy').setup({
         'black', -- Python
         'usort', -- Python (sort imports)
         'djlint', -- HTMLDjango (format and linting diagnostics via null-ls)
+        'gofumpt', -- Go
+        'goimports', -- Go (imports)
         'clang-format', -- C/C++
         'sql-formatter', -- SQL
         'shfmt', -- Shell
@@ -837,6 +839,7 @@ require('lazy').setup({
         typescript = { 'prettierd', 'eslint_d' },
         markdown = { 'prettierd' },
         htmldjango = { 'djlint' },
+        go = { 'goimports', 'gofumpt' },
         c = { 'clang-format' },
         cpp = { 'clang-format' },
         sql = { 'sql_formatter' },
